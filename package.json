@@ -8,10 +8,10 @@
   "license": "ISC",
   "author": "",
   "type": "commonjs",
-  "main": "backend/app.js",
+  "main": "app.js",
   "scripts": {
-        "start": "node backend/app.js",
-    "dev": "nodemon backend/app.js",
+        "start": "node app.js",
+    "dev": "nodemon app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
