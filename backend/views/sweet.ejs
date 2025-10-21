@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="sweet.css">
+  <title>Sweets</title>
+</head>
+<body>
+  <!-- navbar -->
+  <%- include('navbar/nav.ejs') %>
+
+
+  <div class="container-oho">
+    <h1 class="text-center mb-4">All Sweets</h1>
+    <br>
+
+    <div class="sweets-grid">
+      <% sweets.forEach(sweet => { %>
+        <% if (sweet.images && sweet.images.length > 0) { %>
+          <div class="sweet-card">
+            <!-- Clickable image -->
+            <a href="/sweets/<%= sweet._id %>">
+              <img src="<%= sweet.images[0] %>" alt="<%= sweet.name %>">
+            </a>
+            <div class="card-body">
+              <h5 class="card-title"><%= sweet.name %></h5>
+              <p class="card-text">
+                <strong>Cuisines:</strong> <%= sweet.cuisines.join(", ") %>
+                <br>
+                 <strong>Price :</strong> <%= sweet.price %>
+              </p>
+              <div class="rato">
+                <strong>★: </strong> <%= sweet.overallRating %>
+              </div>
+                             
+            </div>
+          </div>
+        <% } %>
+      <% }) %>
+    </div>
+  </div>
+
+
+<script>
+const searchInput = document.getElementById('searchInput'); // ensure ye navbar me exist karta hai
+const sweetsContainer = document.querySelector('.sweets-grid');
+const cards = Array.from(document.querySelectorAll('.sweet-card'));
+
+// store original order
+const originalOrder = cards.slice();
+
+searchInput.addEventListener('input', () => {
+    const query = searchInput.value.toLowerCase().trim();
+
+    let matches = [];
+    let nonMatches = [];
+
+    cards.forEach(card => {
+        const titleElement = card.querySelector('h5.card-title');
+        const descElement = card.querySelector('p.card-text');
+        const titleText = titleElement.textContent;
+        const descText = descElement.textContent;
+
+        // reset previous highlights
+        titleElement.innerHTML = titleText;
+        descElement.innerHTML = descText;
+
+        if (query && (titleText.toLowerCase().includes(query) || descText.toLowerCase().includes(query))) {
+            matches.push(card);
+
+            // highlight matching text
+            const regex = new RegExp(`(${query})`, "gi");
+            titleElement.innerHTML = titleText.replace(regex, `<span style="background: yellow; color: black;">$1</span>`);
+            descElement.innerHTML = descText.replace(regex, `<span style="background: lightblue; color: black;">$1</span>`);
+        } else {
+            nonMatches.push(card);
+        }
+    });
+
+    // append matches first, then non-matches
+    sweetsContainer.innerHTML = '';
+    if (query) {
+        matches.forEach(card => sweetsContainer.appendChild(card));
+        nonMatches.forEach(card => sweetsContainer.appendChild(card));
+    } else {
+        // if no query, restore original order
+        originalOrder.forEach(card => sweetsContainer.appendChild(card));
+    }
+});
+</script>
+
+    <%- include('chatbot') %>
+
+  <br><br><br><br><br><br><br><br><br>
+  <%- include('navbar/footer.ejs') %>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

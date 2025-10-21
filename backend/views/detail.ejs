@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title><%= recipe.name %> | Recipe Details</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/plac.css" />
+  <link rel="stylesheet" href="/detail.css">
+</head>
+<body>
+
+  <!-- Navbar -->
+  <%- include('navbar/nav.ejs') %>
+
+
+  <div class="place-container">
+
+    <!-- Header Info (like place page) -->
+    <div class="place-header">
+      <div class="info-text">
+        <h1><%= recipe.name %></h1>
+        <p class="category"><%= recipe.cuisine || "North Indian, Mughlai" %></p>
+        <p class="address">Famous in: <%= recipe.popularCities.join(", ") %></p>
+        <p class="des"><%= recipe.description || "A delicious and authentic dish made with rich spices and love!" %></p>
+
+        <div class="timing-price">
+          <span><strong>Cooking Style:</strong> <%= recipe.cookingStyle || "Traditional" %></span>
+          <span> | </span>
+          <span><strong>Region:</strong> <%= recipe.region || "Indian" %></span>
+          <span> | </span>
+          <span><strong>₹<%= recipe.priceRange || "200–400" %></strong></span>
+          <span> | </span>
+          <a href="tel:+91XXXXXXXXXX" class="phone">📞 +91XXXXXXXXXX</a>
+        </div>
+
+        <div class="ratings">
+          <div class="rating dining">
+            ⭐ <%= recipe.rating || "4.5" %>
+            <p>Average Rating</p>
+          </div>
+          <div class="rating delivery new">
+            🍴 <%= recipe.famousDishes?.length || 0 %> Dishes
+            <p>Popular Recipes</p>
+          </div>
+        </div>
+
+        <div class="buttons">
+          <button><i class="fa-solid fa-heart"></i> Favorite</button>
+          <button><i class="fa-regular fa-comments"></i> Reviews</button>
+          <a href="/all" style="text-decoration: none;"><button><i class="fa-solid fa-utensils"></i> Try Recipe</button></a>
+          <a href="/placebook/68ee5a19fc9418633d72ce6c"><button><i class="fa-solid fa-file-lines"></i>book place</button></a>
+           <a href="/order"><button><i class="🍔"></i>order food</button></a>
+       
+        </div>
+      </div>
+
+      <!-- Image Gallery -->
+      <div class="gallery">
+        <% if (recipe.images && recipe.images.length > 0) { %>
+          <% recipe.images.slice(0, 4).forEach((img, index) => { %>
+            <img src="<%= img %>" alt="<%= recipe.name %> image <%= index + 1 %>">
+          <% }) %>
+        <% } else { %>
+          <img src="<%= recipe.image %>" alt="<%= recipe.name %>">
+        <% } %>
+      </div>
+    </div>
+
+    <!-- Tabs Section -->
+    <div class="tabs">
+      <a href="#" class="active">Overview</a>
+      <a href="#menu">Menu</a>
+      <a href="#more-info">More Info</a>
+    </div>
+
+    <!-- Ingredients + Description -->
+    <div class="more-info" id="more-info">
+      <h2>About This Recipe</h2>
+      <p><strong>Ingredients:</strong> <%= recipe.ingredients.join(", ") %></p>
+      <p><strong>Famous Dishes:</strong> <%= recipe.famousDishes.join(", ") %></p>
+      <p><strong>Preparation Style:</strong> <%= recipe.cookingStyle || "Traditional" %></p>
+      <p><strong>Description:</strong> <%= recipe.description || "Rich in taste and heritage, this recipe brings authentic flavors to your plate." %></p>
+    </div>
+
+    <!-- Menu Section -->
+    <div class="more-inf" id="menu">
+      <h3>Menu..</h3>
+      <div class="info-grid">
+        <% const variants = [
+          "Paneer Butter Masala",
+          "Dal Makhani",
+          "Chicken Tikka Masala",
+          "Butter Naan",
+          "Veg Biryani",
+          "Mutton Curry",
+          "Chole Bhature",
+          "Gulab Jamun"
+        ]; %>
+
+        <% variants.forEach(item => { %>
+          <div class="info-item">
+            <span><%= item %></span>
+          </div>
+        <% }) %>
+      </div>
+    </div>
+
+    <!-- Explore Other Recipes -->
+    <div class="container my-4">
+      <div class="row g-4">
+        <div class="col-md-3 col-sm-6">
+          <a href="/sweets" class="card-link">
+            <div class="card">
+              <img src="https://b.zmtcdn.com/data/dish_photos/489/436bb7327f5428d06c5e9cbf21a57489.jpg" class="card-img-top" alt="">
+              <div class="card-body">
+                <p class="card-text">Try more delicious dishes. <b>Explore more...</b></p>
+              </div>
+            </div>
+          </a>
+        </div>
+        <div class="col-md-3 col-sm-6">
+          <a href="/sweets" class="card-link">
+            <div class="card">
+              <img src="https://b.zmtcdn.com/data/dish_photos/087/08da1d264fd22828683eca0c7ad14087.png" class="card-img-top" alt="">
+              <div class="card-body">
+                <p class="card-text">Try more delicious dishes. <b>Explore more...</b></p>
+              </div>
+            </div>
+          </a>
+        </div>
+        <div class="col-md-3 col-sm-6">
+          <a href="/sweets" class="card-link">
+            <div class="card">
+              <img src="https://b.zmtcdn.com/data/pictures/7/22102737/9d626f74e11eec248db5d15abf10da0e_o2_featured_v2.jpg" class="card-img-top" alt="">
+              <div class="card-body">
+                <p class="card-text">Try more delicious dishes. <b>Explore more...</b></p>
+              </div>
+            </div>
+          </a>
+        </div>
+        <div class="col-md-3 col-sm-6">
+          <a href="/sweets" class="card-link">
+            <div class="card">
+              <img src="https://b.zmtcdn.com/data/dish_photos/09c/a441c3e5a08797bc99664cf6bf33309c.png" class="card-img-top" alt="">
+              <div class="card-body">
+                <p class="card-text">Try more delicious dishes. <b>Explore more...</b></p>
+              </div>
+            </div>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- More Features (optional image bar like place page) -->
+    <h4>More Flavors</h4>
+    <a href="/places">
+      <div class="barimage">
+        <img src="https://i.pinimg.com/736x/03/02/b1/0302b1590a7f4d460f69585c94032413.jpg" alt="">
+
+<img src="https://i.pinimg.com/originals/48/07/60/480760bc00797da4993f97be18abb6e3.jpg" alt="">
+
+<img src="https://i.pinimg.com/736x/ba/2d/41/ba2d41be736e3bbd4598c7b34e553e5b.jpg" alt="">
+
+<img src="https://i.pinimg.com/736x/8c/bb/dd/8cbbdd454ea4fc78931e830ec68d2d22.jpg" alt="">
+<img src="https://i.pinimg.com/474x/ef/70/ca/ef70ca83a1d2a33916e6fe7f9c9d64d2.jpg" alt="">
+<img src="https://www.weddingsutra.com/images/wedding-images/entertaining/fairy-lights-decor/fairy-lights-decor-32.webp" alt="">
+
+      </div>
+    </a>
+
+  </div>
+<br>
+  <%- include('chatbot') %>
+
+  <br><br>
+  <%- include('navbar/footer.ejs') %>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

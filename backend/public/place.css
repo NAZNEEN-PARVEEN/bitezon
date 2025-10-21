@@ -1,0 +1,121 @@
+.center{
+  margin-left: 160px;
+  margin-right: 160px;
+}
+
+/* Container for all cards */
+.card-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+  padding: 20px;
+}
+
+/* Individual card */
+.card {
+  position: relative;
+  width: 320px; /* width for each card */
+  height: 200px; /* reduced height */
+   /* background-color: rgba(255, 255, 255, 0.95); */
+  border-radius: 120x;
+  overflow: hidden;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+  transition: transform 0.3s;
+  display: flex;
+  flex-direction: column;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+}
+
+/* Image inside card */
+.card img {
+  width: 100%;
+  height: 250px; /* reduced height */
+  object-fit: cover;
+  display: block;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  
+}
+
+/* Card content */
+.card-content {
+  padding: 10px;
+  flex: 1;
+}
+
+/* Place name */
+.card-content h2 {
+  margin: 0 0 5px;
+  font-size: 1rem;
+  color: #333;
+}
+
+/* Place description */
+.card-content p {
+  margin: 3px 0;
+  color: #555;
+  font-size: 0.8rem;
+}
+
+/* Flat discount label */
+.discount-label {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  background-color: #007bff;
+  color: #fff;
+  padding: 3px 7px;
+  font-weight: bold;
+  border-radius: 6px;
+  font-size: 0.75rem;
+}
+
+/* Rating badge */
+.rat {
+  position: absolute;
+  /* top: 10px;
+  right: 10px; */
+  left: 260px;
+  bottom: 30px;
+  margin-left: 300px;
+  background-color: green;
+  color: white !important;
+  padding: 3px 7px;
+   border-radius: 10px;
+  font-size: 0.75rem;
+  font-weight: bold; 
+}
+
+/* Responsive: 3 cards per row */
+@media (min-width: 950px) {
+  .card {
+    flex: 1 1 calc(33.333% - 20px);
+  }
+}
+
+@media (max-width: 950px) and (min-width: 650px) {
+  .card {
+    flex: 1 1 calc(50% - 20px);
+  }
+}
+
+@media (max-width: 650px) {
+  .card {
+    flex: 1 1 100%;
+  }
+}
+
+
+.card-container a{
+  text-decoration: none;
+
+}
+
+
+h1{
+  text-align: center;
+}

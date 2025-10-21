@@ -1,0 +1,12 @@
+h2{
+    background-color: #ef4f5f;
+    width: 180px;
+    border-radius: 10px;
+    margin-left: 300px;
+    color: black;
+    border: 5px solid  #ef4f5f;
+}
+
+.card-header{
+    background-color: #ef4f5f;
+}

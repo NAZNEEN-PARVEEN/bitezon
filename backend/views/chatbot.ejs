@@ -1,0 +1,227 @@
+<!-- NazBot Chatbot -->
+<style>
+  #chatIcon {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: #007bff;
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-size: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+  }
+
+  #chatContainer {
+    position: fixed;
+    bottom: 90px;
+    right: 20px;
+    width: 370px;
+    height: 520px;
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+    display: none;
+    flex-direction: column;
+    overflow: hidden;
+    z-index: 999;
+    animation: slideIn 0.4s ease-in-out;
+  }
+
+  @keyframes slideIn {
+    from { transform: translateY(50px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+  }
+
+  .chat-header {
+    background: linear-gradient(135deg, #6a11cb, #2575fc);
+    color: white;
+    padding: 15px;
+    font-size: 18px;
+    text-align: center;
+    font-weight: 600;
+  }
+
+  .chat-body {
+    flex: 1;
+    padding: 12px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    scroll-behavior: smooth;
+  }
+
+  .chat-body div {
+    margin: 8px 0;
+    padding: 8px 12px;
+    border-radius: 15px;
+    max-width: 80%;
+    line-height: 1.4;
+    word-wrap: break-word;
+  }
+
+  .user {
+    background: #007bff;
+    color: white;
+    align-self: flex-end;
+    text-align: right;
+  }
+
+  .bot {
+    background: #f1f1f1;
+    color: black;
+    align-self: flex-start;
+    text-align: left;
+  }
+
+  .chat-footer {
+    display: flex;
+    border-top: 1px solid #ccc;
+  }
+
+  #userInput {
+    flex: 1;
+    padding: 10px;
+    border: none;
+    outline: none;
+    font-size: 14px;
+  }
+
+  #sendBtn {
+    background: #007bff;
+    border: none;
+    color: white;
+    padding: 0 20px;
+    cursor: pointer;
+    font-weight: 600;
+  }
+
+  #sendBtn:hover {
+    background: #0056b3;
+  }
+
+  button.suggestion {
+    background: #f1f1f1;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    margin: 3px;
+    padding: 5px 10px;
+    cursor: pointer;
+  }
+
+  button.suggestion:hover {
+    background: #dbeafe;
+    border-color: #007bff;
+  }
+</style>
+
+<!-- Chatbot HTML -->
+<button id="chatIcon">💬</button>
+
+<div id="chatContainer">
+  <div class="chat-header">💬 ChatBot</div>
+  <div class="chat-body" id="chatBody">
+    <div class="bot"><b>Assistant:</b> Hi there! 👋 How can I help you today?</div>
+  </div>
+  <div class="chat-footer">
+    <input type="text" id="userInput" placeholder="Type your message..." />
+    <button id="sendBtn">Send</button>
+  </div>
+</div>
+
+<script>
+  const chatIcon = document.getElementById("chatIcon");
+  const chatContainer = document.getElementById("chatContainer");
+  const chatBody = document.getElementById("chatBody");
+  const userInput = document.getElementById("userInput");
+  const sendBtn = document.getElementById("sendBtn");
+
+  chatIcon.addEventListener("click", () => {
+    chatContainer.style.display =
+      chatContainer.style.display === "flex" ? "none" : "flex";
+  });
+
+  const suggestions = ["Order now 🍔", "Show menu 🧾", "Contact support 📞"];
+
+  function showSuggestions() {
+    const sugDiv = document.createElement("div");
+    sugDiv.className = "bot";
+    sugDiv.innerHTML = `<b>Suggestions:</b><br>`;
+    suggestions.forEach(text => {
+      const btn = document.createElement("button");
+      btn.className = "suggestion";
+      btn.textContent = text;
+      btn.onclick = () => {
+        userInput.value = text;
+        sendMessage();
+      };
+      sugDiv.appendChild(btn);
+    });
+    chatBody.appendChild(sugDiv);
+  }
+
+  function showTyping() {
+    const typingDiv = document.createElement("div");
+    typingDiv.id = "typing";
+    typingDiv.className = "bot";
+    typingDiv.innerHTML = `<b>NazBot:</b> <i>typing...</i>`;
+    chatBody.appendChild(typingDiv);
+    chatBody.scrollTop = chatBody.scrollHeight;
+  }
+
+  function hideTyping() {
+    const typingDiv = document.getElementById("typing");
+    if (typingDiv) typingDiv.remove();
+  }
+
+  async function sendMessage() {
+    const message = userInput.value.trim();
+    if (!message) return;
+
+    chatBody.innerHTML += `<div class="user">${message}</div>`;
+    userInput.value = "";
+    chatBody.scrollTop = chatBody.scrollHeight;
+
+    showTyping();
+
+    try {
+      const res = await fetch("/chat", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ message })
+      });
+      const data = await res.json();
+      hideTyping();
+
+      const botDiv = document.createElement("div");
+      botDiv.className = "bot";
+      chatBody.appendChild(botDiv);
+
+      let i = 0;
+      const interval = setInterval(() => {
+        botDiv.textContent += data.reply.charAt(i);
+        i++;
+        chatBody.scrollTop = chatBody.scrollHeight;
+        if (i >= data.reply.length) clearInterval(interval);
+      }, 30);
+    } catch (err) {
+      hideTyping();
+      chatBody.innerHTML += `<div class="bot">Oops! Something went wrong 🤖</div>`;
+      console.error(err);
+    }
+  }
+
+  sendBtn.addEventListener("click", sendMessage);
+  userInput.addEventListener("keypress", e => {
+    if (e.key === "Enter") sendMessage();
+  });
+
+  showSuggestions();
+</script>

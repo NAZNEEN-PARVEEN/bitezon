@@ -1,0 +1,119 @@
+/* Base Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+/* Page Background */
+body {
+  background-color: #fff;
+  color: #333;
+}
+
+/* Container */
+.container-oho {
+  max-width: 1200px;
+  margin: 50px auto;
+  padding: 0 20px;
+}
+
+/* Heading */
+.container-oho h1 {
+  text-align: center;
+  font-weight: 600;
+  margin-bottom: 40px;
+}
+
+/* Grid Layout */
+.sweets-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 25px;
+}
+
+/* Sweet Card */
+.sweet-card {
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  height: 350px; /* Fixed height for uniform size */
+  display: flex;
+  flex-direction: column;
+}
+
+/* Hover Effect */
+.sweet-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 18px rgba(0,0,0,0.15);
+}
+
+/* Image */
+.sweet-card img {
+  width: 100%;
+  height: 240px; /* Same image size for all */
+  object-fit: cover;
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+}
+
+/* Card Body */
+.card-body {
+  padding: 15px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+/* Title */
+.card-title {
+  font-size: 20px;
+  font-weight: 600;
+  color: #222;
+  margin-bottom: 10px;
+  margin-top: 10px;
+  margin-left: 10px;
+}
+
+/* Text */
+.card-text {
+  font-size: 15px;
+  line-height: 1.4;
+  color: #555;
+  margin-left: 10px;
+  margin-bottom: 30px;
+}
+
+/* Rating Section */
+.rato {
+  margin-top: 8px;
+  color: white;
+  font-weight: 500;
+  background-color: green;
+  border-radius: 15px;
+  text-align: center;
+  width: 90px;
+  margin-left: 240px;
+  margin-bottom: 290px;
+  position: absolute;
+}
+
+/* Responsive Design */
+@media (max-width: 992px) {
+  .sweets-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 576px) {
+  .sweets-grid {
+    grid-template-columns: 1fr;
+  }
+  .sweet-card {
+    height: auto;
+  }
+}

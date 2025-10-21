@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Responsive Navbar</title>
+
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <style>
+    body {
+      padding-top: 150px; /* space for fixed navbar */
+      background-color: white;
+    }
+
+    /* Search bar */
+    .sercho {
+      width: 350px;
+      border-radius: 30px;
+      border: 3px solid #ef4f5f;
+      height: 50px;
+      padding: 0 15px;
+      color: black;
+      outline: none;
+      margin-left: 80px;
+    }
+    .sercho:focus {
+      border: 2px solid #ef4f5f;
+      box-shadow: none;
+      margin-top: 20px;
+    }
+
+    /* Navbar links */
+    .navbar-nav .nav-link {
+      font-size: large;
+    }
+
+    /* Inline auth links for large screens */
+    .auth-links {
+      margin-left: 20px;
+    }
+
+    .auth-links a {
+      margin-left: 10px;
+      text-decoration: none;
+      color: black;
+    }
+
+    main {
+      margin-left: 60px;
+    }
+
+    ul li {
+      list-style: none;
+    }
+
+    .nav-link {
+      font-size: large;
+    }
+
+    /* Navbar bottom border */
+    .navbar {
+      border-bottom: 2px solid rgb(220, 220, 220);
+    }
+
+    /* Adjust margin for HR */
+    /* hr {
+      border: 2px solid black;
+      width: 90%;
+      margin: 10px auto;
+    } */
+
+    .d-none {
+      margin-left: 90px;
+     
+    }
+    .logoi{
+   height: 190px;
+   /* Width auto ho jayegi taki image stretch na ho */
+ width: auto; 
+ margin-left:120px;
+ 
+    
+    }
+    #sin{
+      color: #ef4f5f;
+    }
+  </style>
+</head>
+<body>
+
+  
+
+<!-- Navbar -->
+<nav class="navbar navbar-expand-md fixed-top bg-white">
+  <div class="container">
+    <!-- Logo -->
+    <a class="navbar-brand d-flex align-items-center" href="/">
+      <img  class="logoi"src="\all images\img1.png" alt="logo"  class="d-inline-block align-text-top me-2">
+    </a>
+
+    <!-- Search bar for large screens -->
+    <form class="d-none d-lg-block ms-3" id="searchForm" onsubmit="return false;">
+      <input id="searchInput" class="sercho" type="text" placeholder="Search Dishes..." autocomplete="off">
+    </form>
+
+    <!-- Inline auth links for large screens -->
+    <div class="d-none d-lg-flex auth-links align-items-center">
+      <a id="sin" href="/signup">Signup</a>
+      <a  id="sin" href="/login">Login</a>
+      <a id="sin" href="/logout">Logout</a>
+    </div>
+
+    <!-- Hamburger toggler for small screens -->
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+      aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <!-- Collapsible menu for mobile -->
+    <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+      <ul class="navbar-nav align-items-center">
+
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="/">Home</a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link" href="/aboutus">About Us</a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link" href="/contact">Contact Us</a>
+        </li>
+
+        <!-- Mobile search bar -->
+        <li class="nav-item d-lg-none mt-2">
+          <form class="d-flex" id="searchFormMobile" onsubmit="return false;">
+            <input class="sercho" type="text" placeholder="Search Dishes..." autocomplete="off">
+          </form>
+        </li>
+
+        <!-- Auth links inside the same menu for mobile -->
+        <li class="nav-item d-lg-none mt-2">
+          <a class="nav-link" href="/signup">Signup</a>
+        </li>
+        <li class="nav-item d-lg-none mt-2">
+          <a class="nav-link" href="/login">Login</a>
+        </li>
+        <li class="nav-item d-lg-none mt-2">
+          <a class="nav-link" href="/logout">Logout</a>
+        </li>
+
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- HR line clearly visible below navbar -->
+<!-- <hr> -->
+
+
+<!-- Flash messages -->
+<div class="container mt-2">
+  <% if (success && success.length > 0) { %>
+    <div class="alert alert-success text-center">
+      <%= success[0] %>
+    </div>
+  <% } %>
+
+  <% if (error && error.length > 0) { %>
+    <div class="alert alert-danger text-center">
+      <%= error[0] %>
+    </div>
+  <% } %>
+</div>
+
+<br><br><br>
+
+
+
+
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,12 @@
+# dependencies
+node_modules/
+
+# environment
+.env
+
+# build folders
+dist/
+build/
+
+# system files
+.DS_Store

@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Edit Recipe</title>
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <style>
+    body {
+      background-color: #f8f9fa;
+    }
+    .form-container {
+      max-width: 700px;
+      margin: 50px auto; /* center horizontally */
+      padding: 30px;
+      background-color: #fff;
+      border-radius: 10px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+    }
+    .form-container img {
+      display: block;
+      margin: 10px auto;
+      max-width: 350px;
+      border-radius: 8px;
+      height: 250px;
+    }
+
+    .editbt {
+      background-color: #ef4f5f;
+      width: 60px;
+      border-radius: 10px ;
+      border: 5px #ef4f5f solid ;
+      font-weight: 600px;
+      font-size: large;
+
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navbar -->
+  <%- include('navbar/nav.ejs') %>
+
+
+   <h1 class="mb-4 text-center">Edit Recipe</h1>
+
+  <div class="form-container">
+   
+
+    <!-- enctype is required for file uploads -->
+<form action="/recipe/edit/<%= recipeEdit._id %>?_method=PUT" method="POST" enctype="multipart/form-data">
+
+      
+    
+
+      <!-- Show current image -->
+      <% if (recipeEdit.image) { %>
+        <div class="mb-3 text-center">
+          <label class="form-label"></label><br>
+          <img src="<%= recipeEdit.image %>" alt="<%= recipeEdit.recipeName %>" class="img-thumbnail">
+        </div>
+      <% } %>
+
+        <!-- Recipe name -->
+      <div class="mb-3">
+        <label for="name" class="form-label">Dish Name:</label>
+        <input type="text" id="name" name="recipeName" class="form-control" value="<%= recipeEdit.recipeName %>" required>
+      </div>
+
+      <!-- Image URL -->
+      <div class="mb-3">
+        <label for="image" class="form-label">Update <i class="fa-solid fa-photo-film"></i>  (via URL):</label>
+        <input type="text" id="image" name="image" class="form-control" value="<%= recipeEdit.image %>">
+      </div>
+
+      <!-- File upload -->
+      <div class="mb-3">
+        <label for="file" class="form-label"><i class="fa-solid fa-photo-film"></i>  Upload New Image (File):</label>
+        <input type="file" id="file" name="imageFile" class="form-control" accept="image/*">
+        <small class="text-muted">If both URL and file are provided, uploaded file will be used.</small>
+      </div>
+
+      <!-- Description -->
+      <div class="mb-3">
+        <label for="desc" class="form-label">Description:</label>
+        <textarea id="desc" name="description" class="form-control" rows="4" required><%= recipeEdit.description %></textarea>
+      </div>
+
+
+      <div class="mb-3">
+  <label for="quantity" class="form-label">Quantity</label>
+  <input
+    type="number"
+    id="quantity"
+    name="quantity"
+    class="form-control"
+    value="<%= recipeEdit.quantity %>"
+    required
+  >
+</div>
+
+  <div class="mb-3">
+                <label for="Price" class="form-label">Price</label>
+              <input type="number" id="rate" name="rate" class="form-control" placeholder="Enter rate" value="<%= recipeEdit.rate %>">
+
+              </div>
+
+
+
+      <!-- Ingredients -->
+      <div class="mb-3">
+        <label for="ingredients" class="form-label"> 🍴Ingredients  </label>
+        <input type="text" id="ingredients" name="ingredients" class="form-control" 
+               value="<%= recipeEdit.ingredients.join(', ') %>" required>
+      </div>
+
+      <!-- Buttons -->
+      <div class="text-center">
+        <button type="submit" class="editbt ">Edit </button>
+
+        <a href="/recipe/<%= recipeEdit._id %>" class="btn btn-primary ms-2">← Back without saving</a>
+      </div>
+    </form>
+  </div>
+<!-- `/payment/${recipe._id}` -->
+
+
+  <br><br>
+    <%- include('chatbot') %>
+
+  <%- include('navbar/footer.ejs') %>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

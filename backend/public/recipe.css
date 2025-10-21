@@ -1,0 +1,139 @@
+/* 🌸 General Setup */
+body {
+  margin: 0;
+  font-family: "Poppins", sans-serif;
+  background-color: #fafafa;
+  color: #333;
+}
+
+h1 {
+  text-align: center;
+  margin-top: 25px;
+  font-weight: 700;
+  color: #e23744;
+  letter-spacing: 1px;
+}
+
+/* 🌸 Food Container — 3 Cards per Row */
+.foodContainer {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+  padding: 50px 60px;
+  justify-items: center;
+  margin-left: 90px;
+  margin-right: 90px;
+}
+
+/* 🌸 Card Design */
+.card-link {
+  text-decoration: none;
+  color: inherit;
+}
+
+.card {
+  width: 100%;
+  max-width: 340px;
+  border-radius: 20px;
+  overflow: hidden;
+  background: #fff;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  position: relative;
+}
+
+.card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+/* 🌸 Image */
+.imageWrapper {
+  width: 100%;
+  height: 200px;
+  overflow: hidden;
+}
+
+.imageWrapper img {
+  width: 100%;
+  height: 110%;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
+
+.card:hover .imageWrapper img {
+  transform: scale(1.1);
+}
+
+/* 🌸 Card Content */
+.card-body {
+  padding: 15px 20px 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  flex-grow: 1;
+}
+
+.card-title {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #222;
+  margin-bottom: 10px;
+}
+
+/* 🌸 Rating Badge */
+.rating {
+  background-color: green;
+  color: #fff;
+  font-weight: 600;
+  font-size: 0.9rem;
+  padding: 5px 10px;
+  border-radius: 15px;
+  display: inline-block;
+  align-self: flex-start;
+  margin-left: 260px;
+  margin-bottom: 8px;
+  box-shadow: 0 2px 6px rgba(226, 55, 68, 0.3);
+}
+
+/* 🌸 Other Info */
+.cuisine {
+  color: #777;
+  font-size: 0.9rem;
+  margin: 3px 0;
+}
+
+.location {
+  color: #444;
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+.min {
+  color: #888;
+  font-size: 0.85rem;
+  margin-top: 5px;
+}
+
+.card p {
+  margin: 2px 0;
+}
+
+/* 🌸 Responsive Adjustments */
+@media (max-width: 992px) {
+  .foodContainer {
+    grid-template-columns: repeat(2, 1fr);
+    padding: 30px;
+  }
+}
+
+@media (max-width: 600px) {
+  .foodContainer {
+    grid-template-columns: 1fr;
+    padding: 20px;
+  }
+}

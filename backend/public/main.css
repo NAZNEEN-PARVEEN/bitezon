@@ -1,0 +1,317 @@
+.recipe-container {
+    margin-top: 45px;
+    margin-left: 50px;
+  display: flex;        
+  flex-wrap: wrap;      /* men is small */
+  gap: 30px;            
+  justify-content: center; 
+  
+
+}
+
+.recipe-card img {
+  width: 250px;        /* make image wider */
+  height: 150%px;       /* make image taller */
+  object-fit: cover;   /* crop nicely */
+  border-radius: 10px;
+  border: 2px ;
+  font-size: 90px;
+}
+
+.box{
+  background-color: white;
+  height:150px;
+  width: 365px;
+  border-radius: 15px;
+  text-decoration: none;
+
+
+}
+
+a {
+  text-decoration: none !important;
+  color: inherit;
+  outline: none;
+}
+
+a:focus,
+a:active {
+  outline: none;
+  border: none;
+}
+
+a img {
+  border: none;
+  outline: none;
+}
+
+
+
+
+.recipe-card a {
+    display: contents; /* <a> tag remove jaisa behave karega, content dikhega */
+    text-decoration: none; /* underline remove */
+    color: inherit; /* text color same rahe */
+}
+
+
+
+
+
+.recipe-card img {
+  width: 350px;          /* make image fit card */
+  height: 300px;        /* fix height */
+  object-fit: cover;    /* crop image nicely */
+  border-radius: 15px;
+    transition: opacity 0.3 ;
+
+}
+
+.recipe-card img:hover {
+  opacity: 0.8;   /* hover effect */
+}
+
+
+/* show page css  */
+
+/* show page CSS */
+.show-card img {
+  width: 100px;      /* set desired width */
+  height: 120px;      /* maintain aspect ratio */
+
+  border-radius: 8px; /* optional: slightly rounded corners */
+}
+
+.order img{
+  height: 300px;
+  width: 1200px;
+  margin-left: 350px;
+  border-radius: 5px;
+  margin-top: 5px;
+  
+
+}
+
+
+/* Container for all cards */
+.recipe-container {
+  margin-top: 45px;
+  display: flex;
+  flex-wrap: wrap;  
+  gap: 30px;
+  justify-content: center; /* center cards */
+}
+
+/* Each recipe card */
+.recipe-card {
+  width: 350px;             /* fixed card width */
+  background-color: white;
+    height: 400px;
+  border-radius: 15px;
+  overflow: hidden;         /* round corners for image */
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1); /* subtle shadow */
+  text-align: left;
+  transition: transform 0.3s;
+    position: relative; 
+}
+
+.recipe-card:hover {
+  transform: translateY(-5px); /* hover lift effect */
+}
+
+/* Image inside card */
+.recipe-card img {
+  width: 100%;            /* fit card width */
+  height: 240px;          /* fixed height */
+  object-fit: cover;      /* crop nicely */
+  display: block;
+}
+
+/* Box for text content */
+.box {
+  padding: 15px;
+}
+
+/* rating */
+.recipe-card h6 {
+   position: absolute;
+  top: 10px;
+  right: 10px;
+  background-color: green;
+  color: white;
+  padding: 4px 10px;
+  border-radius: 12px;
+  font-size: 13px;
+  font-weight: 500;
+  margin: 0;
+  margin-top: 240px;
+}
+
+
+.min{
+
+    position: absolute;
+bottom: 10px;
+  left: 10px;
+  font-size: 13px;
+  color: #555;
+  font-weight: 500;
+  margin: 0;
+  margin-left: 280px;
+ 
+
+}
+
+
+
+
+/* Recipe title */
+.recipe-card h3 {
+  font-size: 18px;
+  margin: 10px 0 5px 0;
+  font-weight: 600;
+  color: #333;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis; 
+}
+
+/* Optional: description if you want */
+.recipe-card p {
+  font-size: 14px;
+  color: #666;
+  height: auto;        /* allow dynamic height */
+  margin-top: 5px;     /* normal spacing from title */
+  overflow: visible;   /* don’t hide text */
+  white-space: normal; /* allow line breaks */
+}
+
+.recipe-card p {
+  max-height: 80px;
+  overflow-y: auto;
+}
+
+
+
+/* Responsive: 2 cards on tablets, 1 card on mobile */
+@media screen and (max-width: 992px) {
+  .recipe-card {
+    width: 45%;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .recipe-card {
+    width: 90%;
+  }
+}
+
+
+
+
+.link-to-redirect {
+  display: flex;            /* horizontal layout */
+  flex-wrap: wrap;          /* screen chhoti ho to next line me aa jaaye */
+  justify-content: center;  /* center align kare */
+  gap: 20px;                /* images ke beech gap */
+  background-color: white;
+  padding: 20px 0;          /* top-bottom padding */
+}
+
+.link-to-redirect a {
+  display: flex;
+  flex-direction: column;   /* image ke neeche text */
+  align-items: center;
+  text-decoration: none;
+  color: black;
+}
+
+.link-to-redirect img {
+  border-radius: 15px;
+  height: 250px;
+  width: auto;
+  object-fit: cover;        /* image proper fit ho */
+  margin-bottom: 10px;
+}
+
+.link-to-redirect h6 {
+  text-align: center;
+  font-size: 14px;
+  margin: 0;
+}
+
+
+.forLL {
+  display: flex;            /* horizontal row */
+  flex-wrap: wrap;          /* agar space kam ho to next line me aa jaaye */
+  justify-content: center;  /* center align kare */
+  gap: 30px;                /* images ke beech spacing */
+  margin-bottom: 20px;
+}
+
+.oho {
+  display: flex;
+  flex-direction: column;   /* image ke neeche text */
+  align-items: center;
+  text-decoration: none;
+  color: black;
+}
+
+.oho img {
+  border-radius: 90px;
+  height: 180px;
+  width: 180px;
+  background-color: white;
+  object-fit: cover;        /* image proper fit ho */
+}
+
+.oho h6 {
+  margin-top: 5px;
+  text-align: center;
+  font-size: 14px;
+}
+
+
+.orders-show{
+  margin-left: 350px;
+  margin-top: 10px;
+}
+
+.upwork {
+  display: flex;
+  gap: 30px;
+  align-items: center;
+  margin-left: 390px;
+}
+
+.item {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  color: #555;
+  font-size: 14px;
+}
+
+.icon-circle {
+  display: flex;
+  align-items: center;
+  gap: 8px; /* space between image and text */
+  padding: 10px 15px;
+  border-radius: 30px;
+  background: #f2f2f2;
+  transition: 0.3s;
+  /* margin-left: 70px; */
+}
+
+.icon-circle img {
+  width: 30px;
+  height: 30px;
+}
+
+.item.active span {
+  color: #ff5a5f;
+}
+
+.item.active .icon-circle {
+  background: #ffe5e5;
+}

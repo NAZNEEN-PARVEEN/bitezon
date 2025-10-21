@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title><%= region %> Recipes</title>
+  <link rel="stylesheet" href="recipe.css" />
+</head>
+<body>
+      <!-- navbar -->
+    <%- include('navbar/nav.ejs') %>
+  
+    <br><br>
+
+  <h1><%= region %> Dishes</h1>
+
+<div class="foodContainer">
+  <% food.forEach(f => { %>
+    <a href="/food/<%= f._id %>" class="card-link">
+      <div class="card">
+        <div class="imageWrapper">
+          <img src="<%= f.image %>" class="card-img-top" alt="<%= f.name %>" />
+        </div>
+        <div class="card-body content">
+          <h2 class="card-title"><%= f.name %></h2>
+          <span class="rating"><%= f.rating %>★</span>
+          <p class="cuisine"><%= f.cuisine || 'North Indian, Mughlai, Chinese' %></p>
+          <p class="location"><%= f.popularCities.join(", ") %></p>
+          <p><%=f.priceRange  %></p>
+          <p class="min"> min : <%= f.minute  %></p>
+        </div>
+      </div>
+    </a>
+  <% }) %>
+</div>
+
+
+
+
+<script>
+
+const searchInput = document.getElementById('searchInput');
+const foodContainer = document.querySelector('.foodContainer');
+const links = Array.from(document.querySelectorAll('.card-link')); // <a> elements
+
+// store original order
+const originalOrder = links.slice();
+
+searchInput.addEventListener('input', () => {
+    const query = searchInput.value.toLowerCase().trim();
+
+    const matches = [];
+    const nonMatches = [];
+
+    links.forEach(link => {
+        const card = link.querySelector('.card');
+        const titleElement = card.querySelector('.card-title');
+        const descElements = Array.from(card.querySelectorAll('p'));
+
+        const titleText = titleElement.textContent;
+        const descText = descElements.map(p => p.textContent).join(' ');
+
+        // reset previous highlights
+        titleElement.innerHTML = titleText;
+        descElements.forEach(p => p.innerHTML = p.textContent);
+
+        if (query && (titleText.toLowerCase().includes(query) || descText.toLowerCase().includes(query))) {
+            matches.push(link);
+
+            // highlight matching text
+            const regex = new RegExp(`(${query})`, 'gi');
+            titleElement.innerHTML = titleText.replace(regex, `<span style="background: yellow; color: black; pointer-events: none;">$1</span>`);
+            descElements.forEach(p => {
+                p.innerHTML = p.textContent.replace(regex, `<span style="background: lightblue; color: black; pointer-events: none;">$1</span>`);
+            });
+        } else {
+            nonMatches.push(link);
+        }
+    });
+
+    // Reorder <a> links, click safe
+    matches.forEach(link => foodContainer.prepend(link));
+    nonMatches.forEach(link => foodContainer.appendChild(link));
+});
+
+
+</script>
+
+  <%- include('chatbot') %>
+  <br> <br> <br> <br> <br> <br> <br> <br> <br>
+
+<%- include('navbar/footer.ejs') %>
+       <script src="	https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>

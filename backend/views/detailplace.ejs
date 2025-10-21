@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="	https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/plac.css" />
+  <title><%= place.name %> | Details</title>
+</head>
+<body>
+
+  <!-- Navbar -->
+  <%- include('navbar/nav.ejs') %>
+  
+
+  <div class="place-container">
+    <!-- Breadcrumb -->
+    <!-- <div class="breadcrumb">
+      <a href="/">Home</a> >
+      <a href="/places">Places</a> >
+    </div> -->
+
+    <!-- Header Info -->
+    <div class="place-header">
+      <div class="info-text">
+        <h1><%= place.name %></h1>
+        <p class="category"><%= place.category || "Cafe, Restaurant" %></p>
+        <p class="address"><%= place.address || "Address not available" %></p>
+        <p class="des"><%= place.description || "No description available" %></p>
+
+        <div class="timing-price">
+          <span class="open-status">Open now</span>
+          <span> | </span>
+          <span><%= place.timings || "11:00 AM – 12:00 AM" %></span>
+          <span> | </span>
+          <span>₹<%= place.priceRange || "2000" %> for two</span>
+          <span> | </span>
+          <a href="tel:<%= place.phone %>" class="phone">📞 <%= place.phone || "+91XXXXXXXXXX" %></a>
+        </div>
+
+        <div class="ratings">
+          <div class="rating dining">
+            ⭐ <%= place.ratings?.dining || "4.3" %>
+            <p>Dining Ratings</p>
+          </div>
+          <div class="rating delivery new">
+            New ✨
+            <p>Delivery Ratings</p>
+          </div>
+        </div>
+
+        <div class="buttons">
+          <button><i class="fa-solid fa-route"></i> Direction</button>
+          <button><i class="fa-regular fa-comments"></i> Reviews</button>
+          <a href="/placebook/68ee5a19fc9418633d72ce6c"><button><i class="fa-solid fa-clipboard-list"></i> Book a Table</button></a>
+         <a href="/order"><button ><i class="fa-solid fa-check"></i> Order</button></a> 
+        </div>
+      </div>
+
+      <!-- Image Gallery -->
+      <div class="gallery">
+        <% if (place.images && place.images.length > 0) { %>
+          <% place.images.slice(0, 4).forEach((img, index) => { %>
+            <img src="<%= img %>" alt="<%= place.name %> image <%= index + 1 %>">
+          <% }) %>
+        <% } else { %>
+          <p>No images available</p>
+        <% } %>
+      </div>
+    </div>
+
+    <!-- Tabs Section -->
+    <div class="tabs">
+      <a href="#" class="active">Overview</a>
+      <a href="/order">Order Online</a>
+      <a href="/">Menu</a>
+
+    </div>
+
+
+        
+
+    <!-- Additional Information Section -->
+    <div class="more-info">
+      <h2>Additional Information</h2>
+
+      <p><strong>Region:</strong> <%= place.region || "Not specified" %></p>
+
+      <p><strong>Popular Cities:</strong>
+        <% if (place.popularCities && place.popularCities.length > 0) { %>
+          <% place.popularCities.forEach(city => { %>
+            <span class="chip"><%= city %></span>
+          <% }) %>
+        <% } else { %>
+          Not specified
+        <% } %>
+      </p>
+
+      <p><strong>Cuisines:</strong>
+        <% if (place.cuisines && place.cuisines.length > 0) { %>
+          <% place.cuisines.forEach(cuisine => { %>
+            <span class="chip"><%= cuisine %></span>
+          <% }) %>
+        <% } else { %>
+          Not specified
+        <% } %>
+      </p>
+
+      <p><strong>Average Rating:</strong> <%= place.averageRating || "0.0" %></p>
+      <p><strong>Total Reviews:</strong> <%= place.ratings?.totalReviews || 0 %></p>
+      <p><strong>Created At:</strong> <%= place.createdAt ? (new Date(place.createdAt)).toLocaleString() : "N/A" %></p>
+            <p><strong>Average Rating:</strong> <%= place.averageRating || "0.0" %></p>
+    </div>
+
+
+    <!-- menu -->
+     <!-- More Info Section -->
+<div class="more-inf">
+  <h3>More Info</h3>
+  <div class="info-grid">
+    <% const infoItems = [
+      "Lunch",
+      "Dinner",
+      "Home delivery",
+      "Takeaway available",
+      "Full bar available",
+      "Stags allowed",
+      "DJ",
+      "Artistic",
+      "Parking available",
+      "Lounge seating",
+      "Live entertainment",
+      "Live music",
+      "Romantic dining",
+      "Family friendly",
+      "Luxury dining",
+      "Wifi",
+      "Large group seating",
+      "Gluten free options",
+      "Free parking",
+      "Instaworthy",
+      "Nightlife",
+      "Vegan options",
+      "Indoor seating",
+      "Cocktails",
+      "Kid friendly",
+      "Bar seating"
+    ]; %>
+
+    <% infoItems.forEach(item => { %>
+      <div class="info-item">
+        <span><%= item %></span>
+      </div>
+    <% }) %>
+  </div>
+</div>
+
+
+
+<br><br>
+
+<!-- explore other resturants -->
+<!-- Explore Other Restaurants -->
+<div class="container my-4">
+  <div class="row g-4"> 
+
+    <div class="col-md-3 col-sm-6">
+      <a href="/places" class="card-link">
+        <div class="card">
+          <img src="https://b.zmtcdn.com/data/pictures/7/18418277/20b12b311d6bdec919a8a1f5796fd44d_featured_v2.jpg" class="card-img-top" alt="">
+          <div class="card-body">
+            <p class="card-text">Here some more beautiful places. <b>Explore more...</b></p>
+          </div>
+        </div>
+      </a>
+    </div>
+
+    <div class="col-md-3 col-sm-6">
+      <a href="/places" class="card-link">
+        <div class="card">
+          <img src="https://b.zmtcdn.com/data/pictures/8/20243538/3224c047011af9a297160dd0605d1352_featured_v2.jpg" class="card-img-top" alt="">
+          <div class="card-body">
+            <p class="card-text">Here some more beautiful places. <b>Explore more...</b></p>
+          </div>
+        </div>
+      </a>
+    </div>
+
+    <div class="col-md-3 col-sm-6">
+      <a href="/places" class="card-link">
+        <div class="card">
+          <img src="https://b.zmtcdn.com/data/pictures/3/20562173/5b99423fa7f26cf55d81315402f1319b_featured_v2.jpg" class="card-img-top" alt="">
+          <div class="card-body">
+            <p class="card-text">Here some more beautiful places. <b>Explore more...</b></p>
+          </div>
+        </div>
+      </a>
+    </div>
+
+    <div class="col-md-3 col-sm-6">
+      <a href="/places" class="card-link">
+        <div class="card">
+          <img src="https://b.zmtcdn.com/data/pictures/9/20324919/64f9a36ad23ae37fd09f368d29008333_featured_v2.jpg" class="card-img-top" alt="">
+          <div class="card-body">
+            <p class="card-text">Here some more beautiful places. <b>Explore more...</b></p>
+          </div>
+        </div>
+      </a>
+    </div>
+
+  </div>
+</div>
+
+
+
+
+<h4>More Features</h4>
+<a href="/places">
+<div class="barimage ">
+<img src="https://i.pinimg.com/736x/03/02/b1/0302b1590a7f4d460f69585c94032413.jpg" alt="">
+
+<img src="https://i.pinimg.com/originals/48/07/60/480760bc00797da4993f97be18abb6e3.jpg" alt="">
+
+<img src="https://i.pinimg.com/736x/ba/2d/41/ba2d41be736e3bbd4598c7b34e553e5b.jpg" alt="">
+
+<img src="https://i.pinimg.com/736x/8c/bb/dd/8cbbdd454ea4fc78931e830ec68d2d22.jpg" alt="">
+<img src="https://i.pinimg.com/474x/ef/70/ca/ef70ca83a1d2a33916e6fe7f9c9d64d2.jpg" alt="">
+<img src="https://www.weddingsutra.com/images/wedding-images/entertaining/fairy-lights-decor/fairy-lights-decor-32.webp" alt="">
+
+
+</div>
+</a>
+
+   </div>
+   <br>  <%- include('chatbot') %>
+
+   <br><br>
+
+  <%- include('navbar/footer.ejs') %>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+
+
+</body>
+</html>

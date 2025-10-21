@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recipes</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="main.css">
+    <link rel="stylesheet" href="/nav.css">
+    
+</head>
+<body>
+    <!-- navbar -->
+    <%- include('navbar/nav.ejs') %>
+   
+    
+<div class="upwork">
+  <a href="/all" class="item active">
+    <div class="icon-circle">
+      <img src="https://b.zmtcdn.com/data/o2_assets/30fa0a844f3ba82073e5f78c65c18b371616149662.png" alt="">
+      <span>Dining Out</span>
+    </div>
+  </a>
+
+  <a href="/places" class="item">
+    <div class="icon-circle">
+      <img src="https://b.zmtcdn.com/data/o2_assets/01040767e4943c398e38e3592bb1ba8a1616150142.png" alt="">
+      <span>Nightlife</span>
+    </div>
+  </a>
+</div>
+
+
+    
+<div>
+
+    <div class="link-to-redirect">
+      <a href="/placebook/68ee5a19fc9418633d72ce6c"class="no-underline"> 
+        <img src="https://i.pinimg.com/474x/ef/70/ca/ef70ca83a1d2a33916e6fe7f9c9d64d2.jpg" alt=""> 
+        <h6>Book</h6>
+      </a>
+
+      <a href="/places" class="no-underline"> 
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSfeoT8DZxSZM0N9SXzn09S-wJSnuPCheGs7g&s" alt=""> 
+        <h6>Explore More..</h6>
+      </a>
+      <a href="/places" class="no-underline"> 
+        <img src="https://inspirationsandcelebrations.net/wp-content/uploads/2019/10/6-Iconic-Places-To-Wine-and-Dine-at-in-New-York-City-2.jpg" alt=""> 
+          <h6>Go to places</h6>
+      </a>
+      <a href="/places"class="no-underline"> 
+        <img src="https://i.pinimg.com/736x/8c/bb/dd/8cbbdd454ea4fc78931e830ec68d2d22.jpg" alt=""> 
+        <h6>Your destinations</h6>
+      </a>
+    </div>
+        
+    <div class="forLL">
+       <a class="oho" href="/all"class="no-underline"> 
+         <img src="https://b.zmtcdn.com/data/pictures/chains/3/307893/fe297812ef66f236fd9395c70f418adf_o2_featured_v2.jpg?output-format=webp" alt=""> 
+         <h6>Biryani</h6>
+       </a>
+       <a class="oho" href="/sweets"class="no-underline"> 
+         <img src="https://b.zmtcdn.com/data/pictures/7/22102737/9d626f74e11eec248db5d15abf10da0e_o2_featured_v2.jpg" alt=""> 
+         <h6>Sweets </h6>
+       </a>
+       <a class="oho" href="/order"> 
+         <img src="https://b.zmtcdn.com/data/dish_photos/1f7/cec19b7092a5d974d707f5d9115f21f7.jpg" alt=""> 
+         <h6>Order</h6>
+       </a>
+       <a class="oho" href="/order"> 
+         <img src="https://b.zmtcdn.com/data/dish_photos/4cc/2b2ebfd216bb9e51b52df64cf1acf4cc.jpeg" alt=""> 
+         <h6>Order now</h6>
+       </a>
+    </div>
+
+    </div>
+
+    <a href="/order">
+      <button class="order-btn">
+        <img src="https://b.zmtcdn.com/data/o2_assets/e067a1cf0d3fe27b366402b98b994e9f1716296909.png" class="img-fluid" alt="Order">
+      </button>
+    </a>
+
+    <style>
+      .order-btn {
+        background: none;
+        border: none;
+        padding: 0;
+        cursor: pointer;
+      }
+      .order-btn img {
+        display: block;
+        height: 300px;
+        width: 1000px;
+        margin-left: 259px;
+        border-radius: 5px;
+        margin-top: 5px;
+        margin-right: 700px;
+      }
+      @media screen and (max-width: 768px) {
+        .order-btn { display: none; }
+        .order-btn img { display: none; }
+      }
+
+      h6{
+        color:  black;
+        text-decoration: none;
+      }
+
+ 
+
+
+    </style>
+
+ <h3 class="orders-show">All orders </h3>
+
+<div class="recipe-container">
+
+  <br>
+   <% recipes.forEach(recipe => { %>
+
+     <div class="recipe-card">
+      <a href="/recipe/<%= recipe._id %>">
+        <img src="<%= recipe.image %>" alt="<%= recipe.recipeName %>">
+        <div class="box">
+          <h3><%= recipe.recipeName %></h3>
+          <p> Discrption : <%= recipe.description %></p>
+          <h5 class="pa"> Price : <%= recipe.rate  %></h5>
+          <h6> ★.. <%= recipe.quantity  %></h6>
+<p class="min">Min: <%= recipe.minute ? recipe.minute : 30 %></p>
+
+
+<br><br>
+
+          <!-- PLACE BOOKINGS SECTION START -->
+          <% if (recipe.placeBooking && recipe.placeBooking.length > 0) { %>
+            <h5>Place Bookings:</h5>
+            <ul>
+              <% recipe.placeBooking.forEach(booking => { %>
+                <li>
+                  <strong><%= booking.username %></strong> booked 
+                  <%= booking.personCount %> person(s) for <%= booking.days %> day(s) - Meals: <%= booking.meals.join(", ") %>
+                </li>
+              <% }) %>
+            </ul>
+          <% } %>
+          <!-- PLACE BOOKINGS SECTION END -->
+
+        </div>
+      </a>
+    </div>
+
+   <% }) %>
+</div>
+
+
+
+
+
+<script>
+const searchInput = document.getElementById('searchInput');
+const recipeContainer = document.querySelector('.recipe-container');
+const cards = Array.from(document.querySelectorAll('.recipe-card'));
+
+searchInput.addEventListener('input', () => {
+    const query = searchInput.value.toLowerCase().trim();
+
+    let matches = [];
+    let nonMatches = [];
+
+    cards.forEach(card => {
+        const nameElement = card.querySelector('h3');
+        const descElement = card.querySelector('p');
+        const nameText = nameElement.textContent;
+        const descText = descElement.textContent;
+
+        // reset previous highlights
+        nameElement.innerHTML = nameText;
+        descElement.innerHTML = descText;
+
+        if (query && (nameText.toLowerCase().includes(query) || descText.toLowerCase().includes(query))) {
+            matches.push(card);
+
+            // highlight matching text
+            const regex = new RegExp(`(${query})`, "gi");
+            nameElement.innerHTML = nameText.replace(regex, `<span style="background: yellow; color: black; pointer-events: none;">$1</span>`);
+            descElement.innerHTML = descText.replace(regex, `<span style="background: lightblue; color: black; pointer-events: none;">$1</span>`);
+        } else {
+            nonMatches.push(card);
+        }
+    });
+
+    // reorder without clearing innerHTML
+    matches.forEach(card => recipeContainer.prepend(card));
+    nonMatches.forEach(card => recipeContainer.appendChild(card));
+});
+
+</script>
+
+  <%- include('chatbot') %>
+
+<br> <br> <br> <br> <br> <br> <br> <br> <br>
+
+<%- include('navbar/footer.ejs') %>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>

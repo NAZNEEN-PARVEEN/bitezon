@@ -1,0 +1,297 @@
+/* Reset & Base */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+body {
+  background-color: #fff;
+  color: #333;
+}
+
+/* Container */
+.place-container {
+  max-width: 1300px;
+  margin: 40px auto;
+  padding: 0 20px;
+}
+
+/* Breadcrumb */
+.breadcrumb {
+  font-size: 14px;
+  color: #777;
+  margin-bottom: 10px;
+}
+.breadcrumb a {
+  color: #ef4f5f;
+  text-decoration: none;
+}
+.breadcrumb span {
+  color: #333;
+}
+
+/* Header Info */
+.place-header {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 20px;
+  margin-bottom: 30px;
+}
+.info-text {
+  flex: 1 1 50%;
+}
+.info-text h1 {
+  font-size: 36px;
+  margin-bottom: 5px;
+}
+.category {
+  font-size: 18px;
+  color: #555;
+}
+.address {
+  color: #777;
+  margin-bottom: 10px;
+}
+.timing-price {
+  font-size: 15px;
+  color: #444;
+  margin-bottom: 10px;
+}
+.open-status {
+  color: #00b26b;
+  font-weight: 600;
+}
+.phone {
+  text-decoration: none;
+  color: #e03546;
+  font-weight: 500;
+}
+
+/* Ratings */
+.ratings {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin: 15px 0;
+}
+.rating {
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 6px 10px;
+  text-align: center;
+}
+.rating.dining {
+  background: green;
+  color: white;
+  font-weight: 600;
+}
+.rating.new {
+  background: #DDF2D1;
+  color: #00b26b;
+   font-weight: 600;
+}
+
+/* Buttons */
+.buttons {
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
+}
+.buttons button {
+  padding: 8px 14px;
+  border: 1px solid #ef4f5f;
+  border-radius: 8px;
+  background: #fff;
+  cursor: pointer;
+  font-size: 14px;
+  transition: all 0.2s;
+}
+.buttons button:hover {
+  background: #f8f8f8;
+}
+
+/* Gallery */
+.gallery {
+  flex: 1 1 45%;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-auto-rows: 350px;
+  gap: 6px;
+}
+.gallery img {
+  width: 115%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+/* Tabs */
+.tabs {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 25px;
+  border-bottom: 2px solid #f5f5f5;
+}
+.tabs a {
+  flex: 1;
+  text-align: center;
+  padding: 10px 0;
+  text-decoration: none;
+  color: #555;
+  font-weight: 500;
+  border-bottom: 2px solid transparent;
+}
+.tabs a.active {
+  color: #e03546;
+  border-bottom: 2px solid #e03546;
+}
+
+/* Description */
+.description {
+  margin-top: 25px;
+}
+.description h2 {
+  margin-bottom: 10px;
+  font-size: 24px;
+}
+.description p {
+  color: #555;
+  line-height: 1.6;
+}
+
+
+
+
+
+
+
+/* Additional Information Section */
+.more-info {
+  margin-top: 30px;
+  padding: 16px;
+  
+}
+
+.more-info h2 {
+  font-size: 22px;
+  font-weight: 600;
+  margin-bottom: 12px;
+  color: #333;
+}
+
+.more-info p {
+  font-size: 15px;
+  color: #555;
+  margin-bottom: 8px;
+  line-height: 1.5;
+}
+
+.more-info p strong {
+  color: #222;
+}
+
+/* For Popular Cities and Cuisines, display as chips */
+.more-info p span.chip {
+  display: inline-block;
+  background: #f5f7fb;
+  border: 1px solid #dce1eb;
+  padding: 5px 10px;
+  border-radius: 20px;
+  font-size: 13px;
+  margin-right: 6px;
+  margin-bottom: 6px;
+  color: #333;
+}
+
+
+/* menu */
+/* ===== MORE INFO ===== */
+/* ===== MORE INFO ===== */
+.more-inf {
+  background: #fff;
+  margin-top: 20px;
+  padding: 20px 25px;
+  border-radius: 10px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+}
+
+.more-inf h3 {
+  font-size: 18px;
+  margin-bottom: 12px;
+  color:white;
+  width: 110px;
+  background-color: green;
+  font-size: 20px;
+  border-radius: 20px;
+  text-align: center;
+}
+
+.info-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 10px;
+}
+
+.info-item {
+  font-size: 15px;
+  color: #333;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* ✅ Green circle with white tick */
+.info-item::before {
+  content: "✔";
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #00b26b; /* green circle */
+  color: white; /* white tick */
+  font-size: 12px;
+  font-weight: bold;
+  border-radius: 50%;
+  width: 18px;
+  height: 18px;
+}
+
+
+
+
+
+
+.card-img-top {
+  height: 180px;
+  object-fit: cover;
+  border-radius: 8px 8px 0 0;
+}
+.card {
+  border-radius: 10px;
+  overflow: hidden;
+  transition: transform 0.3s ease;
+}
+.card:hover {
+  transform: translateY(-5px);
+}
+
+
+.barimage img{
+    height: 200px;
+    width: 150px;
+    border-radius: 20px;
+    margin-left: 20px;
+
+}
+
+.card-link {
+  display: block;          /* Keeps card as a block (important!) */
+  text-decoration: none;   /* Remove underline */
+  color: inherit;          /* Keep same text color */
+}
+
+.card-link:hover .card {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}

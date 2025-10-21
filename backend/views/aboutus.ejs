@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About Us - FoodApp</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: #fff;
+      color: #333;
+      margin: 0;
+      padding-top: 90px;
+      scroll-behavior: smooth;
+    }
+
+    /* HEADER SECTION */
+    .header {
+      /* background: linear-gradient(135deg, #ff4b3e, #ff7661); */
+
+      color:#ef4f5f;
+      padding: 80px 20px;
+      text-align: center;
+    }
+
+    .header h1 {
+      font-size: 3rem;
+      font-weight: 700;
+    }
+
+    .header p {
+      font-size: 1.2rem;
+      margin-top: 10px;
+      letter-spacing: 0.5px;
+    }
+
+    /* SECTION STYLE */
+    .section {
+      padding: 70px 20px;
+      text-align: center;
+      transition: all 0.3s ease;
+    }
+
+    .section:nth-child(even) {
+      background-color: #f9f9f9;
+    }
+
+    .section h2 {
+      color: #ff4b3e;
+      font-weight: 700;
+      margin-bottom: 20px;
+      position: relative;
+      display: inline-block;
+    }
+
+    .section h2::after {
+      content: '';
+      position: absolute;
+      bottom: -8px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80px;
+      height: 3px;
+      background-color: #ff4b3e;
+      border-radius: 2px;
+    }
+
+    .section p, .section ul {
+      max-width: 750px;
+      margin: 15px auto;
+      font-size: 1.05rem;
+      line-height: 1.8;
+      color: #555;
+    }
+
+    .section ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .section ul li {
+      padding: 8px 0;
+      transition: 0.3s;
+    }
+
+    .section ul li::before {
+      content: "🍴";
+      margin-right: 8px;
+    }
+
+    .section ul li:hover {
+      transform: scale(1.03);
+      color: #ff4b3e;
+    }
+
+    /* CONTACT SECTION */
+    .team {
+      background-color: #fff7f6;
+    }
+
+    .team p {
+      font-size: 1.1rem;
+      margin: 8px 0;
+    }
+
+    .social-icons a {
+      margin: 0 10px;
+      color: #ff4b3e;
+      font-size: 1.4rem;
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+
+    .social-icons a:hover {
+      color: #ff7661;
+    }
+
+    /* FOOTER SPACING */
+    footer {
+      margin-top: 40px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Navbar -->
+  <%- include('navbar/nav.ejs') %>
+  
+
+  <!-- Header -->
+  <div class="header">
+    <h1>About FoodApp</h1>
+    <p>Connecting food lovers with the best restaurants in Ajmer</p>
+  </div>
+
+  <!-- Our Story -->
+  <div class="section overview container">
+    <h2>Our Story</h2>
+    <p>
+      FoodApp was created with one goal — to bring the taste of Ajmer to your fingertips. 
+      From your favorite street snacks to luxury dining, we make it simple, fast, and joyful 
+      to discover, order, and enjoy your favorite meals anytime, anywhere.
+    </p>
+  </div>
+
+  <!-- Mission & Vision -->
+  <div class="section mission container">
+    <h2>Mission & Vision</h2>
+    <p><strong>Mission:</strong> To make food discovery and delivery seamless for every foodie in Ajmer.</p>
+    <p><strong>Vision:</strong> To become the most trusted and loved food platform for local restaurants and customers alike.</p>
+  </div>
+
+  <!-- What We Offer -->
+  <div class="section features container">
+    <h2>What We Offer</h2>
+    <ul>
+      <li>Online ordering from a wide variety of restaurants</li>
+      <li>Authentic ratings and reviews from real users</li>
+      <li>Personalized recommendations based on your taste</li>
+      <li>Fast delivery with real-time tracking</li>
+      <li>Secure and multiple payment options</li>
+    </ul>
+  </div>
+
+  <!-- Contact / Social -->
+  <div class="section team container">
+    <h2>Contact Us</h2>
+    <p>Email: <strong>support@foodapp.com</strong></p>
+    <p>Location: Ajmer, Rajasthan</p>
+    <div class="social-icons">
+      <a href="#"><i class="bi bi-instagram"></i> Instagram</a> |
+      <a href="#"><i class="bi bi-facebook"></i> Facebook</a> |
+      <a href="#"><i class="bi bi-twitter"></i> Twitter</a>
+    </div>
+  </div>
+  <br>
+  <%- include('chatbot') %>
+
+  <br>
+  <%- include('navbar/footer.ejs') %>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
